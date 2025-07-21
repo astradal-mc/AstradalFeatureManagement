@@ -1,0 +1,10 @@
+villager-trades:
+  enabled: false
+  deny-message: "&4Villager Trading is Disabled on Astradal."
+  bypass-message: "&aBypassing Villager Trading Restrictions."
+
+shulker-duplication:
+  enabled: false
+
+natural-iron-golem-spawns:
+  enabled: false

@@ -1,0 +1,12 @@
+name: astradal_feature_management
+version: '1'
+main: net.astradal.astradalFeatureManagement.AstradalFeatureManagement
+api-version: '1.21'
+prefix: Astradal FM
+authors: [Pookachu ]
+description: A plugin that manages many different aspects of Astradal
+website: https://www.astradal.net
+permissions:
+  astradalFeatureManagement.villagerTrading.bypass:
+    description: Allows someone to bypass villager trading restrictions.
+    default: op
