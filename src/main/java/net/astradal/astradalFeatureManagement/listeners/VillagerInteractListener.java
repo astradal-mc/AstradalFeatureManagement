@@ -26,9 +26,7 @@ public class VillagerInteractListener implements Listener {
                     Objects.requireNonNull(pluginInstance.getConfig().getString("villager-trades.deny-message")));
             case "Bypass" -> LegacyComponentSerializer.legacyAmpersand().deserialize(
                     Objects.requireNonNull(pluginInstance.getConfig().getString("villager-trades.bypass-message")));
-            default -> {
-                throw new IllegalStateException("Unexpected value: " + type);
-            }
+            default -> throw new IllegalStateException("Unexpected value: " + type);
         };
     }
 
