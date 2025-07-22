@@ -3,7 +3,6 @@ package net.astradal.astradalFeatureManagement;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
-import net.astradal.astradalFeatureManagement.commands.ReloadCommand;
 import net.astradal.astradalFeatureManagement.listeners.IronGolemSpawnListener;
 import net.astradal.astradalFeatureManagement.listeners.ShulkerDuplicationListener;
 import net.astradal.astradalFeatureManagement.listeners.VillagerInteractListener;
