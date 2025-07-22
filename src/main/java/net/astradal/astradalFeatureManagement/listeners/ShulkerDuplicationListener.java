@@ -26,7 +26,7 @@ public class ShulkerDuplicationListener implements Listener{
         event.setCancelled(true);
         Location location = event.getParent().getLocation();
         //log to console
-        pluginInstance.getLogger().info("Shulker duplication event cancelled at "
+        pluginInstance.getLogger().info("Shulker duplication event cancelled at -
                 + " X: " + location.getBlockX()
                 + " Y: " + location.getBlockY()
                 + " Z: " + location.getBlockZ()
