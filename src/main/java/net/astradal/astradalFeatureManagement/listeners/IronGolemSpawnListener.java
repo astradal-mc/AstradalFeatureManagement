@@ -24,7 +24,7 @@ public class IronGolemSpawnListener implements Listener {
 
                     Location location = event.getLocation();
 
-                    pluginInstance.getLogger().info("Natural Iron Golem spawn cancelled at -"
+                    pluginInstance.getLogger().info("Natural Iron Golem spawn cancelled at: "
                             + location.getBlockX() + ", "
                             + location.getBlockY() + ", "
                             + location.getBlockZ() + "; "
