@@ -26,11 +26,11 @@ public class ShulkerDuplicationListener implements Listener{
         event.setCancelled(true);
         Location location = event.getParent().getLocation();
         //log to console
-        pluginInstance.getLogger().info("Shulker duplication event cancelled at -"
-                + " X: " + location.getBlockX()
-                + " Y: " + location.getBlockY()
-                + " Z: " + location.getBlockZ()
-                + " In world: " + location.getWorld().getName()
+        pluginInstance.getLogger().info("Shulker duplication event cancelled at: "
+                + location.getBlockX() + ", "
+                + location.getBlockY() + ", "
+                + location.getBlockZ() + "; "
+                + location.getWorld().getName()
         );
     }
 }
