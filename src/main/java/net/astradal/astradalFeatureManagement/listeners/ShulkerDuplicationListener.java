@@ -30,7 +30,7 @@ public class ShulkerDuplicationListener implements Listener{
                 + " X: " + location.getBlockX()
                 + " Y: " + location.getBlockY()
                 + " Z: " + location.getBlockZ()
-                + " In world: " + location.getWorld()
+                + " In world: " + location.getWorld().getName()
         );
     }
 }

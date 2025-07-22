@@ -1,6 +1,7 @@
 villager-trades:
   enabled: false
   deny-message: "&4Villager Trading is Disabled on Astradal."
+  deny-message-console:
   bypass-message: "&aBypassing Villager Trading Restrictions."
 
 shulker-duplication:

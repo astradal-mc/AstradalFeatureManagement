@@ -25,8 +25,7 @@ public class VillagerInteractListener implements Listener {
             case "Deny" -> LegacyComponentSerializer.legacyAmpersand().deserialize(
                     Objects.requireNonNull(pluginInstance.getConfig().getString("villager-trades.deny-message")));
             case "Bypass" -> LegacyComponentSerializer.legacyAmpersand().deserialize(
-                    Objects.requireNonNull(pluginInstance.getConfig().getString("villager-trades.bypass-message"))
-            );
+                    Objects.requireNonNull(pluginInstance.getConfig().getString("villager-trades.bypass-message")));
             default -> {
                 throw new IllegalStateException("Unexpected value: " + type);
             }
@@ -58,7 +57,7 @@ public class VillagerInteractListener implements Listener {
             player.sendMessage(getStringFromConfig("Bypass"));
 
             //log to console
-            pluginInstance.getLogger().info(player.getName() + "is bypassing villager trade restrictions.");
+            pluginInstance.getLogger().info(player.getName() + " is bypassing villager trade restrictions.");
             return;
         }
 
@@ -69,6 +68,6 @@ public class VillagerInteractListener implements Listener {
         player.sendMessage(getStringFromConfig("Deny"));
 
         //log to console
-        pluginInstance.getLogger().info(player.getName() + "has been prevented from trading.");
+        pluginInstance.getLogger().info(player.getName() + " has been prevented from trading.");
     }
 }

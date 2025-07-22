@@ -28,7 +28,7 @@ public class IronGolemSpawnListener implements Listener {
                             + " X: " + location.getBlockX()
                             + " Y: " + location.getBlockY()
                             + " Z: " + location.getBlockZ()
-                            + " In world: " + location.getWorld()
+                            + " In world: " + location.getWorld().getName()
                     );
                     break;
                 default:
