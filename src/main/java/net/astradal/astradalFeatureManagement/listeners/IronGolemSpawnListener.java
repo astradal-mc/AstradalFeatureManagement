@@ -1,6 +1,7 @@
 package net.astradal.astradalFeatureManagement.listeners;
 
 import net.astradal.astradalFeatureManagement.AstradalFeatureManagement;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -20,7 +21,15 @@ public class IronGolemSpawnListener implements Listener {
                 case VILLAGE_INVASION:
                     // disable natural spawns
                     event.setCancelled(true);
-                    pluginInstance.getLogger().info("Blocked natural iron golem spawn at" + event.getLocation());
+
+                    Location location = event.getLocation();
+
+                    pluginInstance.getLogger().info("Natural Iron Golem spawn cancelled at "
+                            + " X: " + location.getBlockX()
+                            + " Y: " + location.getBlockY()
+                            + " Z: " + location.getBlockZ()
+                            + " In world: " + location.getWorld()
+                    );
                     break;
                 default:
                     // Allow artificial spawns

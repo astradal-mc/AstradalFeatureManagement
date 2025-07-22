@@ -2,6 +2,7 @@ package net.astradal.astradalFeatureManagement.listeners;
 
 import io.papermc.paper.event.entity.ShulkerDuplicateEvent;
 import net.astradal.astradalFeatureManagement.AstradalFeatureManagement;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -23,8 +24,13 @@ public class ShulkerDuplicationListener implements Listener{
 
         //cancel it
         event.setCancelled(true);
-
+        Location location = event.getParent().getLocation();
         //log to console
-        pluginInstance.getLogger().info("Shulker Duplication Event Cancelled at" + event.getParent().getLocation());
+        pluginInstance.getLogger().info("Shulker duplication event cancelled at "
+                + " X: " + location.getBlockX()
+                + " Y: " + location.getBlockY()
+                + " Z: " + location.getBlockZ()
+                + " In world: " + location.getWorld()
+        );
     }
 }
