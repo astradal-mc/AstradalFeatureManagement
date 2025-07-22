@@ -14,6 +14,8 @@ public final class AstradalFeatureManagement extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveResource("config.yml", false);
+
         //hook listeners
         getServer().getPluginManager().registerEvents(new VillagerInteractListener(this), this);
         getServer().getPluginManager().registerEvents(new ShulkerDuplicationListener(this), this);
