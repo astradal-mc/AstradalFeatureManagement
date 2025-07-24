@@ -1,5 +1,5 @@
 name: AstradalFeatureManagement
-version: '7'
+version: '${version}'
 main: net.astradal.astradalFeatureManagement.AstradalFeatureManagement
 api-version: '1.21'
 prefix: Astradal FM
