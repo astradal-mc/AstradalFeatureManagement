@@ -6,6 +6,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 
+import java.util.Objects;
+
 
 public class RespawnAnchorDamageListener implements Listener {
     //plugin instance constructor injection
@@ -16,9 +18,11 @@ public class RespawnAnchorDamageListener implements Listener {
 
     @EventHandler
     public void onAnchorExplosion(EntityDamageByBlockEvent event) {
-        if (((event.getDamagerBlockState() != null ? event.getDamagerBlockState().getBlock().getType().asBlockType() : null) == BlockType.RESPAWN_ANCHOR)) {
+
+        if (event.getDamagerBlockState() != null && Objects.equals(event.getDamagerBlockState().getType().asBlockType(), BlockType.RESPAWN_ANCHOR)) {
             event.setCancelled(true);
-            pluginInstance.getLogger().info("Event Fired");
+
+            pluginInstance.getLogger().info("Cancelled Respawn Anchor damage");
         }
 
     }

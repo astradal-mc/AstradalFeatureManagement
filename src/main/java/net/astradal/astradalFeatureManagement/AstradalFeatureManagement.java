@@ -22,7 +22,7 @@ public final class AstradalFeatureManagement extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new VillagerInteractListener(this), this);
         getServer().getPluginManager().registerEvents(new ShulkerDuplicationListener(this), this);
         getServer().getPluginManager().registerEvents(new IronGolemSpawnListener(this), this);
-        getServer().getPluginManager().registerEvents(new EndCrystalDamageListener(), this);
+        getServer().getPluginManager().registerEvents(new EndCrystalDamageListener(this), this);
         getServer().getPluginManager().registerEvents(new RespawnAnchorDamageListener(this), this);
     }
 }
