@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class LunarCalendar {
-    private final LocalDate startDate;
+    private final LocalDate startDate; //2025-07-05 year-month-day
 
     private static final String[] PHASE_NAMES = {
         "Irasmath",   // Full Moon (0)
@@ -18,7 +18,7 @@ public class LunarCalendar {
     };
 
     private static final String[] MONTH_NAMES = {
-        "Asahanãth Avareti", // 0 Full Moon - Waning
+        "Sahanãth Avareti",  // 0 Full Moon - Waxing
         "Asahanãth Avareti", // 1
         "Asahanãth Avareti", // 2
         "Asahanãth Avareti", // 3
