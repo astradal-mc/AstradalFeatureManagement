@@ -8,7 +8,8 @@ import net.astradal.astradalFeatureManagement.AstradalFeatureManagement;
 public class AFMCommand {
     public static LiteralCommandNode<CommandSourceStack> create(AstradalFeatureManagement plugin) {
         return Commands.literal("afm")
-            .then(ReloadCommand.get(plugin))
+            .then(Commands.literal("reload")
+                .executes(new ReloadCommand(plugin)))
             .build();
     }
 }

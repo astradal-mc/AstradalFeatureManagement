@@ -2,19 +2,22 @@ package net.astradal.astradalFeatureManagement.commands;
 
 
 import com.mojang.brigadier.Command;
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
-import io.papermc.paper.command.brigadier.Commands;
 import net.astradal.astradalFeatureManagement.AstradalFeatureManagement;
 
-public class ReloadCommand {
+public class ReloadCommand implements Command<CommandSourceStack> {
 
-    static LiteralCommandNode<CommandSourceStack> get(AstradalFeatureManagement plugin) {
-        return Commands.literal("reload")
-            .executes(ctx -> {
-                plugin.reloadConfig();
-                ctx.getSource().getSender().sendMessage("AFM Reloaded");
-                return Command.SINGLE_SUCCESS;
-            }).build();
+    private final AstradalFeatureManagement plugin;
+    public ReloadCommand(AstradalFeatureManagement plugin) {
+        this.plugin = plugin;
+    }
+
+    @Override
+    public int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        plugin.reloadConfig();
+        context.getSource().getSender().sendMessage("AFM Reloaded");
+        return Command.SINGLE_SUCCESS;
     }
 }
