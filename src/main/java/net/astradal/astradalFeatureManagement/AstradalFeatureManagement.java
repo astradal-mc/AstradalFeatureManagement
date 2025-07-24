@@ -1,20 +1,20 @@
 package net.astradal.astradalFeatureManagement;
 
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import io.papermc.paper.command.brigadier.CommandSourceStack;
-import io.papermc.paper.command.brigadier.Commands;
+
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
+import net.astradal.astradalFeatureManagement.commands.AFMCommand;
 import net.astradal.astradalFeatureManagement.listeners.IronGolemSpawnListener;
 import net.astradal.astradalFeatureManagement.listeners.ShulkerDuplicationListener;
 import net.astradal.astradalFeatureManagement.listeners.VillagerInteractListener;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Objects;
 
 public final class AstradalFeatureManagement extends JavaPlugin {
 
     @Override
     public void onEnable() {
         saveResource("config.yml", false);
+        this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands ->
+            commands.registrar().register(AFMCommand.create(this)));
 
         //hook listeners
         getServer().getPluginManager().registerEvents(new VillagerInteractListener(this), this);

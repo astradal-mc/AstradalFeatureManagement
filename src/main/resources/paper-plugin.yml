@@ -1,5 +1,5 @@
-name: astradal_feature_management
-version: '4'
+name: AstradalFeatureManagement
+version: '5'
 main: net.astradal.astradalFeatureManagement.AstradalFeatureManagement
 api-version: '1.21'
 prefix: Astradal FM
@@ -9,4 +9,7 @@ website: https://www.astradal.net
 permissions:
   astradalFeatureManagement.villagerTrading.bypass:
     description: Allows someone to bypass villager trading restrictions.
+    default: op
+  astradalFeatureManagement.command.reload:
+    description: Allows someone to reload the plugin's config.
     default: op
