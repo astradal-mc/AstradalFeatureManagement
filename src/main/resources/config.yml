@@ -1,11 +1,23 @@
-villager-trades:
-  enabled: false
-  deny-message: "&4Villager Trading is Disabled on Astradal."
-  deny-message-console:
-  bypass-message: "&aBypassing Villager Trading Restrictions."
+config-version: 2
 
-shulker-duplication:
-  enabled: false
+balancing-features:
+  villager-trades:
+    enabled: false
+    deny-message: "&4Villager Trading is Disabled on Astradal."
+    deny-message-console:
+    bypass-message: "&aBypassing Villager Trading Restrictions."
 
-natural-iron-golem-spawns:
-  enabled: false
+  shulker-duplication:
+    enabled: false
+
+  natural-iron-golem-spawns:
+    enabled: false
+
+  respawn-anchor-damage:
+    enabled: false
+
+  end-crystal-damage:
+    enabled: false
+
+calendar:
+  start-date: "2025-07-05"

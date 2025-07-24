@@ -23,9 +23,9 @@ public class VillagerInteractListener implements Listener {
     private Component getStringFromConfig(String type) {
         return switch (type) {
             case "Deny" -> LegacyComponentSerializer.legacyAmpersand().deserialize(
-                    Objects.requireNonNull(pluginInstance.getConfig().getString("villager-trades.deny-message")));
+                    Objects.requireNonNull(pluginInstance.getConfig().getString("balancing-features.villager-trades.deny-message")));
             case "Bypass" -> LegacyComponentSerializer.legacyAmpersand().deserialize(
-                    Objects.requireNonNull(pluginInstance.getConfig().getString("villager-trades.bypass-message")));
+                    Objects.requireNonNull(pluginInstance.getConfig().getString("balancing-features.villager-trades.bypass-message")));
             default -> throw new IllegalStateException("Unexpected value: " + type);
         };
     }
@@ -33,7 +33,7 @@ public class VillagerInteractListener implements Listener {
     @EventHandler
     public void onPlayerVillagerInteract(PlayerInteractEntityEvent event) {
         //make sure villager trades are not enabled
-        if (pluginInstance.getConfig().getBoolean("villager-trades.enabled")) {
+        if (pluginInstance.getConfig().getBoolean("balancing-features.villager-trades.enabled")) {
             return;
         }
 

@@ -18,7 +18,7 @@ public class ShulkerDuplicationListener implements Listener{
     public void onShulkerDuplicationEvent(ShulkerDuplicateEvent event)
     {
         //ensure that shulker duplication is not enabled
-        if(pluginInstance.getConfig().getBoolean("shulker-duplication.enabled")) {
+        if(pluginInstance.getConfig().getBoolean("balancing-features.shulker-duplication.enabled")) {
             return;
         }
 
