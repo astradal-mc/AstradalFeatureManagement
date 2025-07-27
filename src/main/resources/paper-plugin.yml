@@ -14,9 +14,9 @@ dependencies:
       required: false
 
 permissions:
-  astradalFeatureManagement.villagerTrading.bypass:
+  astradal.featureManagement.villagerTrading.bypass:
     description: Allows someone to bypass villager trading restrictions.
     default: op
-  astradalFeatureManagement.command.reload:
+  astradal.featureManagement.command.reload:
     description: Allows someone to reload the plugin's config.
     default: op

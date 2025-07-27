@@ -50,7 +50,7 @@ public class VillagerInteractListener implements Listener {
 
         //make sure the interacting player doesn't have bypass permissions
         Player player = event.getPlayer();
-        if (player.hasPermission("astradalFeatureManagement.villagerTrading.bypass")) {
+        if (player.hasPermission("astradal.featureManagement.villagerTrading.bypass")) {
             //tell them they're bypassing the restrictions
             player.sendMessage(getStringFromConfig("Bypass"));
 
