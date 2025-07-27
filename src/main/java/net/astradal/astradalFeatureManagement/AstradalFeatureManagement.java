@@ -17,7 +17,7 @@ public final class AstradalFeatureManagement extends JavaPlugin {
     @Override
     public void onEnable() {
         //load config.yml
-        saveResource("config.yml", false);
+        saveDefaultConfig();
 
         //Register command
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands ->
