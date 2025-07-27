@@ -18,6 +18,7 @@ public class AFMCommand implements Command<CommandSourceStack> {
             .executes(new AFMCommand())
 
             .then(Commands.literal("reload")
+                .requires(sender -> sender.getSender().hasPermission("astradal.featureManagement.command.reload"))
                 .executes(new ReloadCommand(plugin)))
 
             .build();
@@ -25,14 +26,7 @@ public class AFMCommand implements Command<CommandSourceStack> {
 
     @Override
     public int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        final TextComponent helpText = Component
-            .text("------ ======").color(NamedTextColor.YELLOW)
-                .append().content("AFM").color(NamedTextColor.GOLD)
-                .append().content("====== ------").color(NamedTextColor.YELLOW)
-
-            .appendNewline().content("/reload").color(NamedTextColor.GOLD)
-                .append().content(" - ").color(NamedTextColor.WHITE)
-                .append().content("Reloads the plugin").color(NamedTextColor.YELLOW);
+        final TextComponent helpText = Component.text("Command: /reload", NamedTextColor.GOLD);
 
 
         context.getSource().getSender().sendMessage(helpText);
