@@ -8,8 +8,7 @@ import net.astradal.astradalFeatureManagement.listeners.ExplosionDamage.RespawnA
 import net.astradal.astradalFeatureManagement.listeners.IronGolemSpawnListener;
 import net.astradal.astradalFeatureManagement.listeners.ShulkerDuplicationListener;
 import net.astradal.astradalFeatureManagement.listeners.VillagerInteractListener;
-import net.astradal.astradalFeatureManagement.placeholders.date.LoreDate;
-import org.bukkit.Bukkit;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AstradalFeatureManagement extends JavaPlugin {
@@ -22,11 +21,6 @@ public final class AstradalFeatureManagement extends JavaPlugin {
         //Register command
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands ->
             commands.registrar().register(AFMCommand.create(this)));
-
-        //Register placeholder
-        if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            new LoreDate(this).register();
-        }
 
         //Register listeners
         getServer().getPluginManager().registerEvents(new VillagerInteractListener(this), this);
