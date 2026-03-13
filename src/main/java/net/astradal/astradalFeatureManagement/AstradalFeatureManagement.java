@@ -3,6 +3,7 @@ package net.astradal.astradalFeatureManagement;
 
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.astradal.astradalFeatureManagement.commands.AFMCommand;
+import net.astradal.astradalFeatureManagement.listeners.EvokerDropListener;
 import net.astradal.astradalFeatureManagement.listeners.ExplosionDamage.EndCrystalDamageListener;
 import net.astradal.astradalFeatureManagement.listeners.ExplosionDamage.RespawnAnchorDamageListener;
 import net.astradal.astradalFeatureManagement.listeners.IronGolemSpawnListener;
@@ -28,5 +29,6 @@ public final class AstradalFeatureManagement extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new IronGolemSpawnListener(this), this);
         getServer().getPluginManager().registerEvents(new EndCrystalDamageListener(this), this);
         getServer().getPluginManager().registerEvents(new RespawnAnchorDamageListener(this), this);
+        getServer().getPluginManager().registerEvents(new EvokerDropListener(this), this);
     }
 }

@@ -1,4 +1,4 @@
-config-version: 2
+config-version: 3
 
 balancing-features:
   villager-trades:
@@ -19,5 +19,5 @@ balancing-features:
   end-crystal-damage:
     enabled: false
 
-calendar:
-  start-date: "2025-07-05"
+  evoker-totem-drop:
+    enabled: false
