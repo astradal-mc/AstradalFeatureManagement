@@ -10,62 +10,58 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
-import java.util.Objects;
-
 public class VillagerInteractListener implements Listener {
 
-    //plugin instance constructor injection
+    private final AstradalFeatureManagement pluginInstance;
+
+    // Plugin instance constructor injection
     public VillagerInteractListener(AstradalFeatureManagement plugin) {
         this.pluginInstance = plugin;
     }
-    private final AstradalFeatureManagement pluginInstance;
 
-    private Component getStringFromConfig(String type) {
-        return switch (type) {
-            case "Deny" -> LegacyComponentSerializer.legacyAmpersand().deserialize(
-                    Objects.requireNonNull(pluginInstance.getConfig().getString("balancing-features.villager-trades.deny-message")));
-            case "Bypass" -> LegacyComponentSerializer.legacyAmpersand().deserialize(
-                    Objects.requireNonNull(pluginInstance.getConfig().getString("balancing-features.villager-trades.bypass-message")));
-            default -> throw new IllegalStateException("Unexpected value: " + type);
-        };
+    // Helper method to parse the cached string into an Adventure Component
+    private Component parseMessage(String message) {
+        if (message == null || message.isEmpty()) return Component.empty();
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(message);
     }
 
     @EventHandler
     public void onPlayerVillagerInteract(PlayerInteractEntityEvent event) {
-        //make sure villager trades are not enabled
-        if (pluginInstance.getConfig().getBoolean("balancing-features.villager-trades.enabled")) {
-            return;
-        }
-
-        //make sure the interacted entity is a villager
+        // 1. Make sure the interacted entity is a villager first
         if (event.getRightClicked().getType() != EntityType.VILLAGER) {
             return;
         }
 
-        //make sure the villager isn't unemployed
+        // 2. Make sure villager trades are not enabled via cache
+        // Assuming your main class has: public ConfigCache configCache;
+        if (pluginInstance.configCache.isVillagerTrading()) {
+            return;
+        }
+
+        // 3. Make sure the villager isn't unemployed
         Villager villager = (Villager) event.getRightClicked();
         if (villager.getProfession() == Villager.Profession.NONE) {
             return;
         }
 
-        //make sure the interacting player doesn't have bypass permissions
+        // 4. Handle permissions and messaging
         Player player = event.getPlayer();
         if (player.hasPermission("astradal.featureManagement.villagerTrading.bypass")) {
-            //tell them they're bypassing the restrictions
-            player.sendMessage(getStringFromConfig("Bypass"));
+            // Tell them they're bypassing the restrictions using the cached message
+            player.sendMessage(parseMessage(pluginInstance.configCache.getBypassMessage()));
 
-            //log to console
+            // Log to console
             pluginInstance.getLogger().info(player.getName() + " is bypassing villager trade restrictions.");
             return;
         }
 
-        //stop the player from interacting with the villager
+        // 5. Stop the player from interacting with the villager
         event.setCancelled(true);
 
-        //tell them they can't trade with villagers
-        player.sendMessage(getStringFromConfig("Deny"));
+        // Tell them they can't trade with villagers using the cached message
+        player.sendMessage(parseMessage(pluginInstance.configCache.getDenyMessage()));
 
-        //log to console
+        // Log to console
         pluginInstance.getLogger().info(player.getName() + " has been prevented from trading.");
     }
 }

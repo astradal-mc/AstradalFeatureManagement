@@ -13,11 +13,15 @@ import net.astradal.astradalFeatureManagement.listeners.VillagerInteractListener
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AstradalFeatureManagement extends JavaPlugin {
+    public ConfigCache configCache;
 
     @Override
     public void onEnable() {
         //load config.yml
         saveDefaultConfig();
+
+        // Setup the cache for the config options
+        this.configCache = new ConfigCache(this);
 
         //Register command
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands ->

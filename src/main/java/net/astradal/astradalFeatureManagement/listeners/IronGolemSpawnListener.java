@@ -2,39 +2,51 @@ package net.astradal.astradalFeatureManagement.listeners;
 
 import net.astradal.astradalFeatureManagement.AstradalFeatureManagement;
 import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public class IronGolemSpawnListener implements Listener {
-    //plugin instance constructor injection
+
+    private final AstradalFeatureManagement pluginInstance;
+
+    // plugin instance constructor injection
     public IronGolemSpawnListener(AstradalFeatureManagement plugin) {
         this.pluginInstance = plugin;
     }
-    private final AstradalFeatureManagement pluginInstance;
 
     @EventHandler
     public void onIronGolemSpawn(CreatureSpawnEvent event) {
-        if (event.getEntityType() == org.bukkit.entity.EntityType.IRON_GOLEM) {
-            switch (event.getSpawnReason()) {
-                case VILLAGE_DEFENSE:
-                case VILLAGE_INVASION:
-                    // disable natural spawns
-                    event.setCancelled(true);
+        // 1. Fast fail if the spawning entity is not an Iron Golem
+        if (event.getEntityType() != EntityType.IRON_GOLEM) {
+            return;
+        }
 
-                    Location location = event.getLocation();
+        // 2. Check the config cache; if natural spawns are allowed, do nothing
+        if (pluginInstance.configCache.isNaturalIronGolemSpawns()) {
+            return;
+        }
 
-                    pluginInstance.getLogger().info("Natural Iron Golem spawn cancelled at: "
-                            + location.getBlockX() + ", "
-                            + location.getBlockY() + ", "
-                            + location.getBlockZ() + "; "
-                            + location.getWorld().getName()
-                    );
-                    break;
-                default:
-                    // Allow artificial spawns
-                    break;
-            }
+        // 3. Handle the specific spawn reasons
+        switch (event.getSpawnReason()) {
+            case VILLAGE_DEFENSE:
+            case VILLAGE_INVASION:
+                // disable natural spawns
+                event.setCancelled(true);
+
+                Location location = event.getLocation();
+
+                pluginInstance.getLogger().info("Natural Iron Golem spawn cancelled at: "
+                    + location.getBlockX() + ", "
+                    + location.getBlockY() + ", "
+                    + location.getBlockZ() + "; "
+                    + location.getWorld().getName()
+                );
+                break;
+            default:
+                // Allow artificial spawns (like players building them)
+                break;
         }
     }
 }

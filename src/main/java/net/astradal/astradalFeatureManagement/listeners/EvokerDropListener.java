@@ -17,10 +17,15 @@ public class EvokerDropListener implements Listener {
 
     @EventHandler
     public void onEvokerDeath(EntityDeathEvent event) {
-        if(pluginInstance.getConfig().getBoolean("evoker-totem-drop")) return; // skip if the config is set to enable this.
 
-        if (event.getEntityType() == EntityType.EVOKER) {
-            event.getDrops().removeIf(item -> item.getType() == Material.TOTEM_OF_UNDYING);
-        }
+        // 1. Filter out non-Evokers immediately
+        if (event.getEntityType() != EntityType.EVOKER) return;
+
+        // 2. Now check the config, since we know it's an Evoker
+        if (pluginInstance.configCache.isEvokerTotemDrop()) return;
+
+        // 3. Remove the totem
+        event.getDrops().removeIf(item -> item.getType() == Material.TOTEM_OF_UNDYING);
+
     }
 }

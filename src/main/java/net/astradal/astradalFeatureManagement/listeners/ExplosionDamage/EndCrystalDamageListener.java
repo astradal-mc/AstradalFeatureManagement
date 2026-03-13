@@ -8,19 +8,27 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class EndCrystalDamageListener implements Listener {
 
-    //plugin instance constructor injection
+    private final AstradalFeatureManagement pluginInstance;
+
+    // plugin instance constructor injection
     public EndCrystalDamageListener(AstradalFeatureManagement plugin) {
         this.pluginInstance = plugin;
     }
-    private final AstradalFeatureManagement pluginInstance;
 
     @EventHandler
     public void onEndCrystalExplosion(EntityDamageByEntityEvent event) {
-
-        if(event.getDamager().getType().equals(EntityType.END_CRYSTAL)) {
-            event.setCancelled(true);
-
-            pluginInstance.getLogger().info("Cancelled End Crystal damage");
+        // 1. Fast fail if the damager isn't an End Crystal
+        if (event.getDamager().getType() != EntityType.END_CRYSTAL) {
+            return;
         }
+
+        // 2. Check the config cache; if end crystal damage is enabled, do nothing
+        if (pluginInstance.configCache.isEndCrystalDamage()) {
+            return;
+        }
+
+        // 3. Cancel the damage and log it
+        event.setCancelled(true);
+        pluginInstance.getLogger().info("Cancelled End Crystal damage");
     }
 }

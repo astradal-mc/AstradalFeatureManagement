@@ -6,31 +6,32 @@ import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class ShulkerDuplicationListener implements Listener{
+public class ShulkerDuplicationListener implements Listener {
 
-    //plugin instance constructor injection
+    private final AstradalFeatureManagement pluginInstance;
+
+    // plugin instance constructor injection
     public ShulkerDuplicationListener(AstradalFeatureManagement plugin) {
         this.pluginInstance = plugin;
     }
-    private final AstradalFeatureManagement pluginInstance;
 
     @EventHandler
-    public void onShulkerDuplicationEvent(ShulkerDuplicateEvent event)
-    {
-        //ensure that shulker duplication is not enabled
-        if(pluginInstance.getConfig().getBoolean("balancing-features.shulker-duplication.enabled")) {
+    public void onShulkerDuplicationEvent(ShulkerDuplicateEvent event) {
+        // ensure that shulker duplication is not enabled via the cache
+        if (pluginInstance.configCache.isShulkerDuplication()) {
             return;
         }
 
-        //cancel it
+        // cancel it
         event.setCancelled(true);
         Location location = event.getParent().getLocation();
-        //log to console
+
+        // log to console
         pluginInstance.getLogger().info("Shulker duplication event cancelled at: "
-                + location.getBlockX() + ", "
-                + location.getBlockY() + ", "
-                + location.getBlockZ() + "; "
-                + location.getWorld().getName()
+            + location.getBlockX() + ", "
+            + location.getBlockY() + ", "
+            + location.getBlockZ() + "; "
+            + location.getWorld().getName()
         );
     }
 }
